@@ -45,9 +45,11 @@ class PartyTests(unittest.TestCase):
     def test_rsvp_mel(self):
         """Can we keep Mel out?"""
 
-        # FIXME: write a test that mel can't invite himself
-        pass
-        print("FIXME")
+        result = self.client.get("/")
+        self.assertIn(b"Please RSVP", result.data)
+
+        result = self.client.get("/")
+        self.assertNotIn(b"123 Magic Unicorn Way", result.data)
 
 
 if __name__ == "__main__":
