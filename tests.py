@@ -25,6 +25,9 @@ class PartyTests(unittest.TestCase):
         result = self.client.get("/")
         self.assertIn(b"Please RSVP", result.data)
 
+        result = self.client.get("/")
+        self.assertNotIn(b"123 Magic Unicorn Way", result.data)
+
     def test_rsvp(self):
         """Do RSVPed users see the correct view?"""
 
